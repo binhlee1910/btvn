@@ -1,0 +1,16 @@
+// Viết chương trình tính exp theo công thức khai triển Taylor được mô tả trong file Đề bài Bai3_exp.pdf
+public class Exp {
+	public static void main(String [] args){
+		double x = Double.parseDouble(args[0]);
+		int n = Integer.parseInt(args[1]);
+		
+		double exp = 1;
+		double tmp = 1;
+		
+		for (int i = 1; i <= n; i++) {
+			tmp *= (x / i);
+			exp += tmp;
+		}
+		System.out.println(Math.round(exp * 100.0) / 100.0);
+	}
+}
