@@ -1,0 +1,35 @@
+//Bài thực hành  lập trình In ra n số nguyên tố đầu tiên với n được nhập từ bàn phím. 
+//kết quả in ra trên 1 dòng, các số cách nhau bởi 1 dấu cách
+import java.util.Scanner;
+
+public class NPrimes {
+	public static void main (String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		
+		int count = 0;
+		int i = 2;
+		while (count < n) {
+			if (isPrime(i)) {
+				System.out.print(i + " ");
+				count++;
+			}
+			i++;
+		}
+	}
+	
+	 public static boolean isPrime(int k){
+        
+		if (k < 2) {
+			return false;
+		}
+		
+		for (int i = 2; i <= Math.sqrt(k); i++) {
+			if (k % i == 0){
+			return false;
+			}
+		} 
+		
+        return true;
+    }
+}
