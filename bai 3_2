@@ -1,0 +1,88 @@
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Array1D {
+    public static void main (String[] args) {
+        /* TODO */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = inputArray(n,sc);
+        printDescendingArray(arr);
+        print2ndElementWithIndices(arr);
+
+    }
+
+    public static void inputArray(int[] array1d, Scanner keyboard) {
+        /* TODO */
+        for (int i = 0; i < array1d.length; i++) {
+            array1d[i] = keyboard.nextInt();
+        }
+    }
+
+    public static int[] inputArray(int size, Scanner keyboard) {
+        /* TODO */
+        int arr[] = new int[size];
+        inputArray(arr, keyboard);
+        return arr;
+    }
+
+    public static void printArray(int[] array1d) {
+        /* TODO */
+        for (int x : array1d) {
+            System.out.print(x + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printDescendingArray(int[] array1d) {
+        /* TODO */
+        int n = array1d.length;
+        for (int i = 0; i < array1d.length - 1; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < array1d.length; j++) {
+                if (array1d[j] > array1d[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            int temp = array1d[i];
+            array1d[i] = array1d[maxIndex];
+            array1d[maxIndex] = temp;
+        }
+        printArray(array1d);
+    }
+
+    public static void print2ndElementWithIndices(int[] array1d) {
+        /* TODO */
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+
+        for (int x : array1d) {
+            if (x > max) {
+                secondMax = max;
+                max = x;
+            } else if ( x > secondMax && x < max) {
+                secondMax = x;
+            }
+        }
+
+        if (secondMax == Integer.MIN_VALUE) {
+            System.out.println("Không có phần tử lớn thứ 2 trong mảng");
+            return;
+        }
+
+        ArrayList<Integer> indices = new ArrayList<>();
+        for (int i = 0; i < array1d.length; i++) {
+            if (array1d[i] == secondMax) {
+                indices.add(i);
+            }
+        }
+
+        System.out.print(secondMax + "[");
+        for (int i = 0; i < indices.size(); i++) {
+            if (i > 0) System.out.print(" ");
+            System.out.print(indices.get(i));
+        }
+        System.out.println("]");
+    }
+}
