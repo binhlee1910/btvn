@@ -1,0 +1,42 @@
+/**
+ * Chương trình nhập số nguyên dương n và mảng A gồm n số nguyên
+ * Đếm số lần xuất hiện của các giá trị có trong A (không lặp lại)
+ * In ra các cặp giá trị:số lần xuất hiện, theo yêu cầu trong mô tả
+ * */
+import java.util.Scanner;
+
+public class Countvalues {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        inputMatrix(arr, sc);
+        count(arr);
+    }
+
+    public static int[] inputMatrix(int a[], Scanner sc) {
+        for (int i = 0; i < a.length; i++) {
+            a[i] = sc.nextInt();
+        }
+        return a;
+    }
+
+    public static void count (int a[]) {
+        boolean counted[] = new boolean[a.length];
+
+        for (int i = 0; i < a.length; i++) {
+            if (!counted[i]) {
+                int count = 1;
+                counted[i] = true;
+
+                for (int j = i + 1; j < a.length; j++) {
+                    if (a[j] == a[i]) {
+                        count++;
+                        counted[j] = true;
+                    }
+                }
+                System.out.print(a[i] + ":" + count + " ");
+            }
+        }
+    }
+}
