@@ -1,0 +1,61 @@
+
+import java.util.Scanner;
+
+public class AddMatrix {
+    public static void main(String[] args) {
+        // input rows
+        // inputs columns
+        // if using inputMatrix, allocate matrix first, and then pass matrix to inputMatrix method
+        // if using generateMatrix, pass rows and columns to generateMatrix method, and then allocate matrix
+        // call addMatrix to add the matrices
+        // print matrix
+        /* TODO */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        int arr1[][] = generateMatrix(n,m, sc);
+        int arr2[][] = generateMatrix(n, m, sc);
+
+        print(addMatrix(arr1, arr2));
+
+    }
+
+    public static void inputMatrix(int[][] matrix, Scanner keyboard) {
+        /* TODO */
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = keyboard.nextInt();
+            }
+        }
+    }
+
+    public static int[][] generateMatrix(int rows, int columns, Scanner keyboard) {
+        /* TODO */
+        int arr[][] = new int[rows][columns];
+        inputMatrix(arr, keyboard);
+
+        return arr;
+    }
+
+    public static int[][] addMatrix(int[][] matrixA, int[][] matrixB) {
+        /* TODO */
+        int matrixC[][] = new int[matrixA.length][matrixA[0].length];
+        for (int i = 0; i < matrixA.length; i++) {
+            for (int j = 0; j < matrixA[0].length; j++) {
+                matrixC[i][j] = matrixA[i][j] * 2 + matrixB[i][j] * 3;
+            }
+        }
+        return matrixC;
+    }
+
+    public static void print(int[][] matrix) {
+        /* TODO */
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
