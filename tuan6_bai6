@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class NameProperty {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String a = sc.nextLine();
+
+        a = a.trim();
+        a = a.replaceAll("\\s+", " ");
+        String words[] = a.split(" ");
+        String result = " ";
+
+        for (String word : words) {
+            result += Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase() + " ";
+        }
+        result = result.trim();
+        System.out.println(result);
+    }
+}
