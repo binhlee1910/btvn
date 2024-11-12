@@ -1,0 +1,59 @@
+/**
+* Chương trình nhập một số nguyên dương size và ma trận nguyên matrix kích thước size x size, 
+* sau đó kiểm tra xem các phần tử của ma trận có giá trị từ 1 đến size x size hay không.
+* Nếu đúng in ra màn hình thông báo "YES", nếu sai, in ra thông báo "NO"
+*/
+
+import java.util.Scanner;
+
+public class CheckMatrix {
+    public static void main (String[] args) {
+        // input size
+        // call inputMatrix to input values of the matrix
+        // call checkMatrix to check matrix
+        // print result
+        /* TODO */
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        int arr[][] = inputMatrix(size, sc);
+
+        if (checkMatrix(arr) == true) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+
+    public static int[][] inputMatrix(int size, Scanner keyboard) {
+        /* TODO */
+        int arr[][] = new int[size][size];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                arr[i][j] = keyboard.nextInt();
+            }
+        }
+        return arr;
+    }
+
+    public static boolean checkMatrix(int[][] matrix) {
+        /* TODO */
+        int n = matrix.length * matrix.length;
+        boolean[] check = new boolean[n];
+
+        for (int arr[] : matrix) {
+            for (int x : arr) {
+                if (x < 1 || x > n) {
+                    return false;
+                }
+                check[x - 1] = true;
+            }
+        }
+
+        for (boolean x : check) {
+            if (!x) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
