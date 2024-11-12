@@ -1,0 +1,52 @@
+// Chương trình nhân 2 ma trận
+
+import java.util.Scanner;
+
+public class TimesMatrix {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int rows = sc.nextInt();
+        int columns = sc.nextInt();
+
+        int matrixA[][] = new int[rows][columns];
+        int matrixB[][] = new int[columns][rows];
+        inputMatrix(matrixA, sc);
+        inputMatrix(matrixB, sc);
+
+        print(multiply(matrixA, matrixB));
+    }
+
+    public static void inputMatrix(int[][] matrix, Scanner keyboard) {
+        // input matrix via keyboard
+        /* TODO */
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = keyboard.nextInt();
+            }
+        }
+    }
+
+    public static int[][] multiply (int matrixA[][], int matrixB[][]) {
+        int matrixC[][] = new int[matrixA.length][matrixB[0].length];
+        for (int i = 0; i < matrixC.length; i++) {
+            for (int j = 0; j < matrixA.length; j++) {
+                int result = 0;
+                for (int k = 0; k < matrixA[0].length; k++) {
+                    result += matrixA[i][k] * matrixB[k][j];
+                }
+                matrixC[i][j] = result;
+            }
+        }
+        return matrixC;
+    }
+
+    public static void print(int[][] matrix) {
+        /* TODO */
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
