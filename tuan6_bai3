@@ -1,0 +1,63 @@
+/**
+* Chương trình nhập ma trận nguyên kích thước m x n,
+* sau đó xóa đi cột có chỉ số k
+*/
+
+import java.util.Scanner;
+
+public class ColumnDeletion {
+    public static void main(String[] args) {
+        // input rows
+        // input columns
+        // input index
+        // input matrix
+        // call deleteColumn method to delete column of the matrix
+        // print matrix
+        /* TODO */
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int index = sc.nextInt();
+
+        int arr[][] = new int[n][m];
+        inputMatrix(arr, sc);
+
+        print(deleteColumn(arr, index));
+
+    }
+
+    public static void inputMatrix(int[][] matrix, Scanner keyboard) {
+        // input matrix via keyboard
+        /* TODO */
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = keyboard.nextInt();
+            }
+        }
+    }
+
+    public static int[][] deleteColumn(int[][] matrix, int index) {
+        /* TODO */
+        int arr[][] = new int[matrix.length][matrix[0].length - 1];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                if (j < index) {
+                    arr[i][j] = matrix[i][j];
+                } else {
+                    arr[i][j] = matrix[i][j + 1];
+                }
+            }
+        }
+        return arr;
+    }
+
+    public static void print(int[][] matrix) {
+        /* TODO */
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
