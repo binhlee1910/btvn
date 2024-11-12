@@ -1,0 +1,65 @@
+/**
+ * Hoàn thiện chương trình Collinear cho phép nhập 2 số nguyên m, n và mảng A
+ * m x n phần tử nguyên. Kiểm tra và liệt kê các cột cộng tuyến theo yêu cầu
+ * Giữ cấu trúc hàm kiểm tra isCollinear(int V[], int U[]), bổ sung các hàm/
+ * phương thức khác để hoàn thành chương trình.
+ * */
+import java.util.Scanner;
+
+public class Collinear {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int m = scanner.nextInt();
+        int n = scanner.nextInt();
+
+        int[][] matrix = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = scanner.nextInt();
+            }
+        }
+
+        // Tìm các cột cộng tuyến
+        int[] result = new int[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = i;
+            for (int j = 0; j < i; j++) {
+                if (isCollinear(getColumn(matrix, j), getColumn(matrix, i))) {
+                    result[i] = j;
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < n; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }
+
+    public static boolean isCollinear(int[] V, int[] U) {
+        if (V.length != U.length) return false;
+
+        Double t = null; // Tỷ lệ cần kiểm tra
+        for (int i = 0; i < V.length; i++) {
+            if (V[i] == 0 && U[i] == 0) continue;
+            if (V[i] == 0 || U[i] == 0) return false;
+            double ratio = (double) U[i] / V[i];
+            if (t == null) {
+                t = ratio;
+            } else if (t != ratio) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static int[] getColumn(int[][] matrix, int index) {
+        int[] column = new int[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            column[i] = matrix[i][index];
+        }
+        return column;
+    }
+}
