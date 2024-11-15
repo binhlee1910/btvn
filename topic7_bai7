@@ -1,0 +1,133 @@
+import java.util.Scanner;
+
+public class De1Bai2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n;
+        do {
+            n = sc.nextInt();
+        } while ( n < 4);
+
+        int matrix[][] = inputMatrix(n, n, sc);
+
+        int c;
+        do {
+            c = sc.nextInt();
+        } while ( c > 4 || c < 1);
+
+        switch (c) {
+            case 1:
+                check1(matrix);
+                break;
+            case 2:
+                check2(matrix);
+                break;
+            case 3:
+                check3(matrix);
+                break;
+            case 4:
+                check4(matrix);
+                break;
+        }
+
+    }
+
+    public static void inputMatrix(int[][] matrix, Scanner keyboard) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = keyboard.nextInt();
+            }
+        }
+    }
+
+    public static int[][] inputMatrix(int rows, int columns, Scanner keyboard) {
+        int matrix[][] = new int[rows][columns];
+        inputMatrix(matrix, keyboard);
+        return matrix;
+    }
+
+
+    public static void check1 (int matrix[][]) {
+        int n = matrix.length;
+        for (int i = 0; i < matrix.length; i++) {
+            if ( matrix[i][0] != matrix[i][n - 1]) {
+                System.out.println("NO");
+                return;
+            }
+        }
+        System.out.println("YES");
+    }
+
+    public static void check2 (int matrix[][]) {
+        for (int col1 = 0; col1 < matrix.length - 1; col1++) {
+            for (int col2 = col1 + 1; col2 < matrix.length; col2 ++) {
+                boolean flag = true;
+                for (int rows = 0; rows < matrix[0].length; rows++) {
+                    if ( matrix[rows][col1] != matrix[rows][col2] ) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    System.out.println("YES");
+                    return;
+                }
+            }
+        }
+        System.out.println("NO");
+    }
+
+    public static void check3 (int matrix[][]) {
+        int min = Integer.MAX_VALUE;
+        boolean flag = false;
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (isPerfect(matrix[i][j])) {
+                    flag = true;
+                    min = Math.min(min, matrix[i][j]);
+                }
+            }
+        }
+        System.out.println(flag ? min : -1 );
+    }
+
+    public static boolean isPerfect (int n) {
+        if ( n < 2) {
+            return false;
+        }
+
+        int sum = 1;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if ( n % i == 0 ) {
+                sum += i + n/i;
+            }
+        }
+        return sum == n;
+    }
+
+    public static void check4 (int matrix[][]){
+        int arr[] = new int[matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            arr[i] = matrix[i][0];
+        }
+
+        boolean counted[] = new boolean[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+            if (!counted[i]) {
+                int count = 1;
+                counted[i] = true;
+
+                for (int j = i + 1; j < arr.length; j++) {
+                    if ( arr[i] == arr[j]) {
+                        count++;
+                        counted[j] = true;
+                    }
+                }
+                System.out.print(count + " ");
+            }
+        }
+    }
+
+}
